@@ -12,6 +12,7 @@ BUCKET_NAME = 'esihondagebucket'
 
 s3 = boto3.client('s3', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
 
+# définition 
 def create_survey():
     survey_data = {
         "Intentions de quitter le pays": {
@@ -58,7 +59,7 @@ def save_survey_response(data, file_name):
     with open(file_name, "ab") as pickle_file:
         pickle.dump(data, pickle_file)
 
-    # Save response to AWS S3 as a CSV file
+    # Enregistrement les réponses as dans un fichier csv
     csv_data = [[question, answer] for question, answer in data.items()]
     csv_buffer = io.StringIO()
     csv_writer = csv.writer(csv_buffer)
